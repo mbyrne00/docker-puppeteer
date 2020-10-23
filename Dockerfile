@@ -20,9 +20,8 @@ RUN  apt-get update \
      && wget --quiet https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh -O /usr/sbin/wait-for-it.sh \
      && chmod +x /usr/sbin/wait-for-it.sh
 
-RUN alias ll='ls -lha'
 # Install Puppeteer under /node_modules so it's available system-wide
 ADD package.json package-lock.json /
 RUN npm install
-RUN chown -R 1000:1000 "/root/.npm"
+RUN chmod -R og+w "/root/.npm"
 
